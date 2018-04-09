@@ -1,4 +1,4 @@
-var isPalindrome = function(x) {
+const isPalindrome = function(x) {
   if (x < 0 || (x % 10 === 0) && x !== 0) {
     return false;
   }
@@ -22,7 +22,5 @@ var isPalindrome = function(x) {
   }
   return Math.floor(palindromePart) === x;
 };
-console.log(isPalindrome(10));
-console.log(isPalindrome(1222222221));
-console.log(isPalindrome(1000030001));
-console.log(isPalindrome(2221222));
+
+module.exports = isPalindrome;
