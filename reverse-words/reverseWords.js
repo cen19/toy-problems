@@ -1,9 +1,3 @@
-const message = [ 'c', 'a', 'k', 'e', ' ',
-  'p', 'o', 'u', 'n', 'd', ' ',
-  's', 't', 'e', 'a', 'l' ];
-
-// assume that array is filled with words seperated with spaces
-
 // Solve in place
 
 let reverseWords = function(arrayOfLetters) {
@@ -29,7 +23,4 @@ let reverseWords = function(arrayOfLetters) {
   return arrayOfLetters;
 };
 
-
-
-console.log(reverseWords(message));
-
+module.exports = reverseWords;

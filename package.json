@@ -1,0 +1,14 @@
+{
+  "name": "toy-problems",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/cen19/toy-problems.git",
+  "author": "cen19 <wilsoncen@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^22.4.3"
+  }
+}
