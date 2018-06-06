@@ -9,33 +9,45 @@ const mazeRunner = function(maze, directions) {
     });
   });
 
-  console.log(currentLocation);
-  
-  for (let i = 0; i < directions.length; i++) {
-    if (directions[i] === 'N') {
-      let northPosition = [...currentLocation];
-      northPosition[0] -= 1;
-      northPosition;
+  const isSafeToGo = function(coords) {
+    // takes in coords
+    let min = Math.min(...coords);
+    let max = Math.max(...coords);
+    if (min < 0) { return 'Dead'; }
+    if (max > maze.length - 1) { return 'Dead'; }
+    const spot = maze[coords[0]][coords[1]];
 
-      let rowIndex = northPosition[0]; 
-      let columnIndex = northPosition[1]; 
-      if (maze[rowIndex][columnIndex] === 0) {
-        currentLocation = northPosition;
-      }
+    if (spot === 1) {
+      return 'Dead';
+    } else if (spot === 3) {
+      return 'Finish';
     }
+
+    return true;
+  };
+
+  let futureSpot = [];
+
+  for (let i = 0; i < directions.length; i++) {
+    futureSpot = [...currentLocation];
+    if (directions[i] === 'N') {
+      futureSpot[0] = futureSpot[0] - 1;
+    } else if (directions[i] === 'S') {
+      futureSpot[0] = futureSpot[0] + 1;
+    } else if (directions[i] === 'W') {
+      futureSpot[1] = futureSpot[1] - 1;
+    } else if (directions[i] === 'E') {
+      futureSpot[1] = futureSpot[1] + 1;
+    }
+
+    let spot = isSafeToGo(futureSpot);
+    if (spot !== true) {
+      return spot;
+    }
+    currentLocation = futureSpot;
   }
 
-  return 'lost';
+  return 'Lost';
 };
 
-var maze = [[1, 1, 1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 0, 0, 3],
-            [1, 0, 1, 0, 1, 0, 1],
-            [0, 0, 1, 0, 0, 0, 1],
-            [1, 0, 1, 0, 1, 0, 1],
-            [1, 0, 0, 0, 0, 0, 1],
-            [1, 2, 1, 0, 1, 0, 1]];
-
-let directions = ['N'];
-
-console.log(mazeRunner(maze, directions));
+module.exports = mazeRunner;
