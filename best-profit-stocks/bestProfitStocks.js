@@ -2,22 +2,20 @@ const getMaxProfit = (stockPrices) => {
   let lowestPrice = stockPrices[0];
   let maxProfit = 0;
 
-  for (let i = 0; i < stockPrices.length; i++) {
-    let highest = findHighest(stockPrices, i);
-    let profit = highest - stockPrices[i];
-
-    if (maxProfit < profit) {
-      maxProfit = profit;
-    }
-  }
+  stockPrices.forEach(function(price, i) {
+    let highest = findHighestFromCurrPlace(stockPrices, i);
+    let profit = highest - price;
+    maxProfit = maxProfit < profit ? maxProfit = profit : maxProfit;
+  });
   return maxProfit;
 };
 
-const findHighest = (stockPrices, startIndex) => {
-  let highest = stockPrices[startIndex];
-  for (let i = startIndex + 1; i < stockPrices.length; i++) {
-    if (stockPrices[i] > highest) {
-      highest = stockPrices[i];
+// find the highest amount from the current place
+const findHighestFromCurrPlace = (array, startIndex) => {
+  let highest = array[startIndex];
+  for (let i = startIndex + 1; i < array.length; i++) {
+    if (array[i] > highest) {
+      highest = array[i];
     }
   }
   return highest;
