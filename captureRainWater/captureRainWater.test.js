@@ -1,4 +1,4 @@
-const { isPeak } = require('./captureRainWater_v2.js');
+const { isPeak, trap } = require('./captureRainWater_v2.js');
 
 let test1 = [0, 1, 0];
 
